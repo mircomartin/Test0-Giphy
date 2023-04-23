@@ -1,31 +1,17 @@
-import { useEffect, useState } from 'react'
-import { getGifs } from './services/gifs'
-import { type IGif } from './interfaces/types'
+import { useGifs } from './hooks/useGifs'
+import { ListGifs } from './components/ListGifs'
 import './App.css'
+import { Route, Routes } from 'react-router-dom'
 
 function App () {
-  const [gifs, setGifs] = useState<IGif[] | []>([])
+  const { gifs } = useGifs()
 
-  useEffect(() => {
-
-    getGifs()
-      .then((newGifs) => {
-        if (newGifs !== undefined) setGifs(newGifs)
-      })
-      .catch((error: Error) => console.error(error))
-      
-  }, [])
-  
   return (
-    <div className='app'>
-      <section className='app-content'>
-        {
-          gifs.map((gif: IGif) => (
-            <figure key={gif.id}>
-              <img src={gif.image} alt={gif.title} />
-            </figure>
-          ))
-        }
+    <div className="container">
+      <section className="app-content">
+        <Routes>
+          <Route index path="/gif/:keyword" element={<ListGifs gifs={gifs} />} />
+        </Routes>
       </section>
     </div>
   )
