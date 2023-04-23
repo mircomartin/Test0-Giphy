@@ -68,3 +68,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.nav a {
+  color: #646cff;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: 500;
+  transition: color 0.25s;
+}

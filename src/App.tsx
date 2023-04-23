@@ -1,16 +1,20 @@
-import { useGifs } from './hooks/useGifs'
+import { Link, Route, Routes } from 'react-router-dom'
 import { ListGifs } from './components/ListGifs'
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
 
 function App () {
-  const { gifs } = useGifs()
 
   return (
     <div className="container">
       <section className="app-content">
+        <h1>Gif App</h1>
+        <ul className="nav">
+          <li>
+            <Link to='/gif/messi'>Messi</Link>
+          </li>
+        </ul>
         <Routes>
-          <Route index path="/gif/:keyword" element={<ListGifs gifs={gifs} />} />
+          <Route index path='/gif/:keyword' element={<ListGifs />} />
         </Routes>
       </section>
     </div>
