@@ -2,10 +2,10 @@ import { type IGif, type Gif } from '../interfaces/types'
 
 const API_URL = 'https://api.giphy.com/v1/gifs/search?api_key=of51dI75FWxkmchK1oGr5T4YDOwLo9ib&q='
 
-export const getGifs = async ({ keyword = 'batman' }: { keyword?: string }) => {
+export const getGifs = async ({ keyword, limit = 10, page = 0 }: { keyword?: string | null; limit?: number; page?: number }) => {
   
   try {
-    const response = await fetch(`${API_URL}${keyword}`)
+    const response = await fetch(`${API_URL}${keyword}&limit=${limit}&offset=${page * limit}`)
     // Manejo el error
     if (!response.ok) throw new Error('Error al obtener los gifs')
 

@@ -27,6 +27,8 @@ module.exports = {
     'no-multi-spaces': 'off',
     '@typescript-eslint/no-confusing-void-expression': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/promise-function-async': 'off'
+    '@typescript-eslint/promise-function-async': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/consistent-type-assertions': 'off'
   }
 }

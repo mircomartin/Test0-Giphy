@@ -1,19 +1,15 @@
-import { useParams } from 'react-router-dom'
 import { Gif } from './Gif'
-import { useGifs } from '../hooks/useGifs'
+import { type IGif } from '../interfaces/types'
 
-export const ListGifs = () => {
-  const { keyword } = useParams()
-  const { gifs, loading } = useGifs({ keyword })
-  
-  if (loading) return <h1>Loading...</h1>
+export const ListGifs = ({ gifs }: { gifs: IGif[] }) => {
+
   return (
-    <>
+    <div className="listOfGifs">
       {
         gifs.map((gif) => (
           <Gif key={gif.id} gif={gif}/>
         ))
       }
-    </>
+    </div>  
   )
 }

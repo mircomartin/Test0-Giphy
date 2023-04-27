@@ -1,12 +1,23 @@
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { GifsContext } from '../context/GifsContext'
 import { type IGif } from '../interfaces/types'
 
 export const Gif = ({ gif }: { gif: IGif }) => {
+
+  const { setActiveGif } = useContext(GifsContext)
+  const handleClick = () => {
+    setActiveGif(gif)
+  }
+  
   return (
-    <a href={gif.title} className="gif">
-      <h4>{gif.title}</h4>
-      <figure>
-        <img src={gif.image} alt={gif.title} />
-      </figure>
-    </a>
+    <div className="gif">
+      <Link to={`/gif/${gif.id}`} className="gif-link" onClick={handleClick}>
+        <h4>{gif.title}</h4>
+        <figure>
+          <img loading="lazy" src={gif.image} alt={gif.title} />
+        </figure>
+      </Link>
+    </div>
   )
 }

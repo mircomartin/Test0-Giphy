@@ -1,23 +1,28 @@
 import { Link, Route, Routes } from 'react-router-dom'
-import { ListGifs } from './components/ListGifs'
+import { GifsProvider } from './context/GifsProvider'
+import { Home } from './pages/Home'
+import { SearchResults } from './pages/SearchResults'
+import { Details } from './pages/Details'
+import LOGO from './assets/logo.png' 
 import './App.css'
 
 function App () {
 
   return (
-    <div className="container">
-      <section className="app-content">
-        <h1>Gif App</h1>
-        <ul className="nav">
-          <li>
-            <Link to='/gif/messi'>Messi</Link>
-          </li>
-        </ul>
-        <Routes>
-          <Route index path='/gif/:keyword' element={<ListGifs />} />
-        </Routes>
-      </section>
-    </div>
+    <GifsProvider>
+      <div className="app">
+        <section className="app-content">
+          <Link to='/'>
+            <img src={LOGO} className="app-logo" alt="Ghiffhy Logo" />
+          </Link>
+          <Routes>
+            <Route index path='/' element={<Home />} />
+            <Route path='/search/:keyword' element={<SearchResults />} />
+            <Route path='/gif/:id' element={<Details />} />
+          </Routes>
+        </section>
+      </div>
+    </GifsProvider>
   )
 }
 
