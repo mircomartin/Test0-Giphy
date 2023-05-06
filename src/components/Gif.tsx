@@ -1,9 +1,9 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { GifsContext } from '../context/GifsContext'
 import { type IGif } from '../interfaces/types'
 
-export const Gif = ({ gif }: { gif: IGif }) => {
+const Gif = ({ gif }: { gif: IGif }) => {
 
   const { setActiveGif } = useContext(GifsContext)
   const handleClick = () => {
@@ -21,3 +21,5 @@ export const Gif = ({ gif }: { gif: IGif }) => {
     </div>
   )
 }
+
+export default React.memo(Gif)

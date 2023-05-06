@@ -1,4 +1,4 @@
-import { Gif } from './Gif'
+import Gif from './Gif'
 import { type IGif } from '../interfaces/types'
 
 export const ListGifs = ({ gifs }: { gifs: IGif[] }) => {
