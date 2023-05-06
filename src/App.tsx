@@ -5,6 +5,7 @@ import { SearchResults } from './pages/SearchResults'
 import { Details } from './pages/Details'
 import LOGO from './assets/logo.png' 
 import './App.css'
+import { Error404 } from './pages/404'
 
 function App () {
 
@@ -19,6 +20,8 @@ function App () {
             <Route index path='/' element={<Home />} />
             <Route path='/search/:keyword' element={<SearchResults />} />
             <Route path='/gif/:id' element={<Details />} />
+
+            <Route path='/*' element={<Error404 />} />
           </Routes>
         </section>
       </div>
