@@ -3,9 +3,9 @@ import { GifsProvider } from './context/GifsProvider'
 import { Home } from './pages/Home'
 import { SearchResults } from './pages/SearchResults'
 import { Details } from './pages/Details'
+import { Error404 } from './pages/404'
 import LOGO from './assets/logo.png' 
 import './App.css'
-import { Error404 } from './pages/404'
 
 function App () {
 
@@ -18,7 +18,7 @@ function App () {
           </Link>
           <Routes>
             <Route index path='/' element={<Home />} />
-            <Route path='/search/:keyword' element={<SearchResults />} />
+            <Route path='/search/:keyword/:rating?' element={<SearchResults />} />
             <Route path='/gif/:id' element={<Details />} />
 
             <Route path='/*' element={<Error404 />} />

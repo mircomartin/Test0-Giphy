@@ -4,21 +4,22 @@ import { getGifs } from '../services/gifs'
 import { type IGif } from '../interfaces/types'
 
 interface Props {
-  keyword?: string | null
+  keyword: string
+  rating: string
 }
 
-export const useGifs = ({ keyword = null }: Props) => {
+export const useGifs = ({ keyword = '', rating = 'g' }: Props) => {
 
-  const { setGifs, gifs } = useContext(GifsContext)
+  const { setGifs, gifs, lang } = useContext(GifsContext)
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(0)
 
-  const keywordToUse = keyword ?? localStorage.getItem('lastKeyword') ?? 'random'
- 
+  const keywordToUse = keyword !== '' ? keyword : localStorage.getItem('lastKeyword') ?? 'random'
+
   useEffect(() => {
     setLoading(true)
   
-    getGifs({ keyword: keywordToUse })
+    getGifs({ keyword: keywordToUse, rating, lang })
       .then((newGifs) => {
         if (newGifs) {
           setGifs(newGifs)
@@ -27,12 +28,12 @@ export const useGifs = ({ keyword = null }: Props) => {
       })
       .catch((error: Error) => console.error(error))
       .finally(() => setLoading(false))
-  }, [keyword, keywordToUse])
+  }, [keyword, rating, lang])
 
   useEffect(() => {
     setLoading(true)
     if (page > 0) {
-      getGifs({ keyword: keywordToUse, limit: 10, page })
+      getGifs({ keyword: keywordToUse, limit: 10, page, rating, lang })
         .then((newGifs) => {
           if (newGifs) {
             setGifs((prevGifs: IGif[]) => (prevGifs.concat(newGifs)))
@@ -41,7 +42,7 @@ export const useGifs = ({ keyword = null }: Props) => {
         .catch((error: Error) => console.error(error))
         .finally(() => setLoading(false))
     }
-  }, [page, keyword])
+  }, [page, keyword, rating, lang])
 
   return {
     gifs,
