@@ -177,3 +177,9 @@ figure {
   flex-direction: column;
   gap: 10px;
 }
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 600;
+}

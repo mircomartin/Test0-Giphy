@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 
 export const Login = () => {
 
-  const { login } = useContext(UserContext)
+  const { login, isLogged, error } = useContext(UserContext)
 
   const navigate = useNavigate()
   const [form, setForm] = useState({
@@ -22,13 +22,24 @@ export const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log('submit')
-    login(form.userName, form.password)
-    navigate('/', { replace: true })
+
+    const { userName, password } = form
+    login({ userName, password })
+
   }
+
+  useEffect(() => {
+    if (isLogged) {
+      navigate('/', { replace: true })
+    }
+  }, [isLogged])
 
   return (
     <div>
       <form onSubmit={handleSubmit} className='form-login'>
+        {
+          error && <p className='error'>{error}</p>
+        }
         <label>User Name</label>
         <input type="text" placeholder='User name' name='userName' value={form.userName} onChange={handleInputChange} />
         <label>Password</label>
