@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { UserContext } from './UserContext'
 import { loginWithUserAndPassword } from '../services/login'
 import { addFav } from '../services/addFav'
+import { registerUserToApi } from '../services/register'
 
 export const UserProvider = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
 
@@ -23,7 +24,7 @@ export const UserProvider = ({ children }: { children: JSX.Element | JSX.Element
   const login = useCallback(({ userName, password }: { userName: string, password: string }) => {
     setLoading(true)
     const res = loginWithUserAndPassword({ userName, password })
-    console.log('res', res)
+    console.log('login', res)
     if (!res) {
       setError('Invalid user or password')
       setToken('')
@@ -35,13 +36,29 @@ export const UserProvider = ({ children }: { children: JSX.Element | JSX.Element
       setIsLogged(true)
       setLoading(false)
     }
-  }, [setToken])
+  }, [])
 
   const logout = useCallback(() => {
     window.sessionStorage.removeItem('token')
     setIsLogged(false)
     setToken('')
     setFavs([])
+  }, [])
+
+  const registerUser = useCallback(({ userName, password }: { userName: string, password: string }) => {
+    setLoading(true)
+    const res = registerUserToApi({ userName, password })
+    if (res === null) {
+      setError('User already exists')
+      setToken('')
+      window.sessionStorage.removeItem('token')
+      setLoading(false)
+    } else {
+      setError(null)
+      setToken('123456')
+      setIsLogged(true)
+      setLoading(false)
+    }
   }, [])
 
   const fav = useCallback(({ id }: { id: string }) => {
@@ -59,6 +76,7 @@ export const UserProvider = ({ children }: { children: JSX.Element | JSX.Element
       // Methods
       setToken,
       login,
+      registerUser,
       setIsLogged,
       logout,
       error,

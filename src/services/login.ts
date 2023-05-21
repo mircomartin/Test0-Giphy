@@ -1,9 +1,10 @@
 export const loginWithUserAndPassword = ({ userName, password }: { userName: string, password: string }) => {
-  const resp = localStorage.getItem('user')
+  const resp = localStorage.getItem('users')
   if (resp) {
     const user = JSON.parse(resp)
-    if (user.userName === userName && user.password === password) {
-      return user      
+    const usersFiltered = user.some((user: any) => user.userName === userName && user.password === password)
+    if (usersFiltered) {
+      return user
     } else {
       return null
     }

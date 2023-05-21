@@ -18,12 +18,12 @@ const Modal = ({ children, onClose }: Props) => {
 }
 
 export const ModalPortal = ({ children, onClose }: Props) => {
-  const el = document.getElementById('modal-root')
+  const el = document.getElementById('root')
   if (!el) return null
   return ReactDOM.createPortal(
     <Modal onClose={onClose}>
       {children}
     </Modal>,
-    document.getElementById('modal-root') as HTMLElement
+    document.getElementById('root') as HTMLElement
   )
 }

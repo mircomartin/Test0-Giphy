@@ -23,6 +23,10 @@ export const Fav = ({ id }: { id: string }) => {
     setModal(false)
   }
 
+  const handleLogin = () => {
+    setModal(false)
+  }
+
   return (
     <>
       <button onClick={handleFavorite} style={{ backgroundColor: isFaved ? 'red' : 'rgb(248, 166, 180, .5)' }}>
@@ -33,7 +37,7 @@ export const Fav = ({ id }: { id: string }) => {
       {
         modal && 
           <ModalPortal onClose={handleClose}>
-            <LoginForm />
+            <LoginForm onLogin={handleLogin} />
           </ModalPortal>
       }
     </>

@@ -6,6 +6,7 @@ import { Home } from './pages/Home'
 import { SearchResults } from './pages/SearchResults'
 import { Details } from './pages/Details'
 import { Error404 } from './pages/404'
+import { Register } from './pages/Register'
 import { Login } from './pages/Login'
 import LOGO from './assets/logo.png' 
 import './App.css'
@@ -27,6 +28,7 @@ function App () {
                 <Route path='/search/:keyword/:rating?' element={<SearchResults />} />
                 <Route path='/gif/:id' element={<Details />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
 
                 <Route path='/*' element={<Error404 />} />
               </Routes>

@@ -17,7 +17,10 @@ export const Header = () => {
         pathname !== '/login' 
           ? isLogged
             ? <button onClick={handleLogout}>Logout</button>
-            : <Link to="/login">Login</Link>
+            : <div style={{ display: 'flex', gap: '10px' }}>
+                <Link to='/login'>Login</Link>
+                <Link to='/register'>Register</Link>
+              </div>
           : null
       }
     </header>

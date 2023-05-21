@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import { Loading } from './Loading'
 
-export const LoginForm = () => {
+export const LoginForm = ({ onLogin }: { onLogin: () => void }) => {
 
   const { login, isLogged, error, loading } = useContext(UserContext)
 
@@ -22,18 +22,17 @@ export const LoginForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('submit')
 
     const { userName, password } = form
     login({ userName, password })
-
   }
 
   useEffect(() => {
     if (isLogged) {
       navigate('/', { replace: true })
+      if (onLogin !== undefined) return onLogin()
     }
-  }, [isLogged])
+  }, [isLogged, onLogin])
 
   if (loading) return <Loading />
 

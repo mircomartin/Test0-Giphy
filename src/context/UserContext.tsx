@@ -9,6 +9,7 @@ interface ContextProps {
   // Methods
   setToken: React.Dispatch<React.SetStateAction<string>>
   login: ({ userName, password }: { userName: string; password: string; }) => void
+  registerUser: ({ userName, password }: { userName: string; password: string; }) => void
   setIsLogged: React.Dispatch<React.SetStateAction<boolean>>
   logout: () => void
   fav: ({ id }: { id: string }) => void
