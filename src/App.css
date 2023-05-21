@@ -78,6 +78,12 @@
   z-index: 1;
 }
 
+.gif-buttons button{
+  border-radius: 100px;
+  border: none;
+  background-color: rgb(248, 166, 180, .5);
+}
+
 .gif-link {
   color: #000;
   display: block;

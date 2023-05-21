@@ -41,8 +41,8 @@ export const SearchForm = ({ initialKeyword, initialRating }: Props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <button disabled={keyword === '' && true}>Buscar</button>
+    <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+      <button disabled={keyword === '' && true} className='btn'>Buscar</button>
       <input type="text" value={keyword} onChange={handleChangeKeyword}/>
       <select value={rating} onChange={handleChangeRating}>
         {

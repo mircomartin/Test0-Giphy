@@ -21,14 +21,16 @@ function App () {
             <Link to='/'>
               <img src={LOGO} className="app-logo" alt="Ghiffhy Logo" />
             </Link>
-            <Routes>
-              <Route index path='/?' element={<Home />} />
-              <Route path='/search/:keyword/:rating?' element={<SearchResults />} />
-              <Route path='/gif/:id' element={<Details />} />
-              <Route path='/login' element={<Login />} />
+            <main>
+              <Routes>
+                <Route index path='/?' element={<Home />} />
+                <Route path='/search/:keyword/:rating?' element={<SearchResults />} />
+                <Route path='/gif/:id' element={<Details />} />
+                <Route path='/login' element={<Login />} />
 
-              <Route path='/*' element={<Error404 />} />
-            </Routes>
+                <Route path='/*' element={<Error404 />} />
+              </Routes>
+            </main>
           </section>
         </div>
       </GifsProvider>
